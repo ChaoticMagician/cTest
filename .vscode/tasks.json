@@ -1,40 +1,33 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "type": "shell",
-      "label": "g++.exe build active file",
-      "command": "D:\\cappsoft\\depend\\mingw64\\bin\\g++.exe",
-      "args": [
-        "-g",
-        "-std=c++20",
-        "\"${file}\"",
-        "-o",
-        "\"${fileDirname}\\${fileBasenameNoExtension}.exe\""
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "presentation": {
-        "echo": false,
-        "reveal": "silent",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": false,
-        "clear": true
-      },
-      "problemMatcher": [
-        "$gcc"
-      ]
-    }
-  ],
-  "options": {
-    "shell": {
-      "executable": "${env:SystemRoot}\\System32\\cmd.exe",
-      "args": [
-        "/c"
-      ]
-    }
-  }
+    "version": "2.0.0",
+    "tasks": [{
+            "label": "compile",
+            "command": "g++",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
 }
